@@ -20,7 +20,7 @@ async function questions(){
 			message: 'Please enter the URL to the HTML sitemap to be scraped (must start with https/http):',
 			initial: 'https://diablo.fandom.com/wiki/Local_Sitemap',
 			validate(value) {
-				return isValidHttpUrl(value) ? true : false;
+				return isValidHttpUrl(value);
 			}
 		},
 		{

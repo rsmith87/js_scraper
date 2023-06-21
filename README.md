@@ -8,9 +8,17 @@ Steps to run:
 
 ### Preperation for use - item's you will need
 1. URL to HTML sitemap of site
-2. CSS selector for an individual list item link on the page.
-3. CSS selector for the scraped page titles.
-4. CSS selector for the scraped page content.
+2. CSS selector for an individual list item link on the HTML sitemap page.
+3. CSS selector for the page titles on the pages to be scraped (I use an individual link from the HTML sitemap on step 1).
+4. CSS selector for the page content on the pages to be scraped.
+
+Prompt items:
+1. Please enter the URL to the HTML sitemap to be scraped (must start with https/http)
+2. Please enter the CSS selector to the <li> of the sitemap to be scraped
+3. Please enter CSS selector for the page title
+4. Please enter the CSS selector for the page content
+5. Enter the timeout in milliseconds to wait for a page to load based on your internet speed. (1000-3000)
+6. Please enter the name for the saved file.  Do not include the file extension
 
 Sample answers (set as default during the prompt):
 1. `https://diablo.fandom.com/wiki/Local_Sitemap`
