@@ -4,7 +4,7 @@ const colors = require('ansi-colors');
 
 // create new progress bar
 const b1 = new cliProgress.SingleBar({
-    format: 'CLI Progress |' + colors.cyan('{bar}') + '| {percentage}% || {value}/{total} links found || Duration: {duration_formatted} || ETA: {eta_formatted}',
+    format: 'Site scrape progress |' + colors.cyan('{bar}') + '| {percentage}% || {value}/{total} links found || Duration: {duration_formatted} || ETA: {eta_formatted}',
     barCompleteChar: '\u2588',
     barIncompleteChar: '\u2591',
     hideCursor: true
@@ -42,21 +42,14 @@ const scraperObject = {
 			// Original method, however, due to the time it takes for the browser to navigate to the page we need a try/catch with a .waitForSelector() from puppeteer
 			// dataObj['pageTitle'] = await newPage.$eval(answers.titleSelector, text => text.textContent);
 
-			// TODO: Need to clean this up and not use 2 try/catch's
-			// If the page title is available then the rest of the content should be available.
 			try {
 				await newPage.waitForSelector(answers.titleSelector, { timeout: answers.timeoutToWait ?? 1000 });
 				dataObj['pageTitle'] = await newPage.$eval(answers.titleSelector, text => text.textContent);
-			} catch(error) {
-				dataObj['pageTitle'] = "No title available";
-			}
-			//dataObj['pageContent'] = await newPage.$eval(answers.contentSelector, div => div.textContent.trim().replace(/\t/g, "").replace(/\n/g, " "));
-			try {
-				await newPage.waitForSelector(answers.contentSelector, { timeout: answers.timeoutToWait ?? 1000 });
 				dataObj['pageContent'] = await newPage.$eval(answers.contentSelector, div => div.textContent.trim().replace(/\t/g, "").replace(/\n/g, " "));
 			} catch(error) {
+				dataObj['pageTitle'] = "No title available";
 				dataObj['pageContent'] = "No content available";
-			}	
+			}
 			
 			resolve(dataObj);
 			await newPage.close();
