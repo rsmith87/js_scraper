@@ -1,6 +1,6 @@
-const browserObject = require('./browser');
-const scraperController = require('./pageController');
-const promptQuestions = require('./promptQuestions');
+const browserObject = require('./lib/browser');
+const scraperController = require('./controllers/pageController');
+const promptQuestions = require('./lib/promptQuestions');
 
 let promptAnswers = promptQuestions.questions().then((answers) => {
 
